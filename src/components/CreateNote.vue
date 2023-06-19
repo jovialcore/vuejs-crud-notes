@@ -11,7 +11,7 @@
       rows="3"></textarea>
   </div>
 
-  <button class="btn btn-primary" role="button"> Create </button>
+  <button class="btn btn-primary" @click="save" role="button"> Create </button>
 </template>
 
 
@@ -22,7 +22,7 @@ export default {
 
   setup() {
     const text = ref('');
-    console.log(text.value)
+
     const wordCount = ref(0);
 
     watch(text, (newText) => {
@@ -35,10 +35,15 @@ export default {
       const words = text.trim().split(/\s+/);
       wordCount.value = words.length
     }
+
+    const save = function () {
+      localStorage.setItem('userData', text.value)
+    }
     return {
       text,
       wordCount,
-      wordCounter
+      wordCounter,
+      save
     }
   }
 }
