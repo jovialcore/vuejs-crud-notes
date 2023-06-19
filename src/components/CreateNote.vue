@@ -2,7 +2,8 @@
 <template>
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Note Title</label>
-    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="e.g Purple Hibiscus">
+    <input v-model="title" type="text" class="form-control" id="exampleFormControlInput1"
+      placeholder="e.g Purple Hibiscus">
   </div>
   <div class="mb-3">
     Words: {{ wordCount }}
@@ -22,6 +23,7 @@ export default {
 
   setup() {
     const text = ref('');
+    const title = ref('');
 
     const wordCount = ref(0);
 
@@ -37,13 +39,15 @@ export default {
     }
 
     const save = function () {
-      localStorage.setItem('userData', text.value)
+      localStorage.setItem('noteTitle', title.value)
+      localStorage.setItem('noteText', text.value)
     }
     return {
       text,
       wordCount,
       wordCounter,
-      save
+      save,
+      title
     }
   }
 }

@@ -5,17 +5,39 @@
 
   <div class="card mt-3">
     <div class="card-body">
-      <h5 class="card-title">Note title</h5>
-      <p class="card-text">Notes brief description... </p>
+      <h5 class="card-title">Note title :  {{ title }} </h5>
+      <p class="card-text"> Description: {{ text }}</p>
 
     </div>
   </div>
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
 export default {
   name: 'LandingPage',
- 
+
+  setup() {
+    const title = ref('')
+    const text = ref('jjfjfj')
+    onMounted(() => {
+
+      if (localStorage.userData) {
+
+        title.value = localStorage.noteTitle
+        text.value = localStorage.noteText
+
+      }
+      console.log(`the component is now mounted.`)
+    })
+
+    return {
+      title,
+      text
+    }
+  }
+
+
 }
 </script>
 
