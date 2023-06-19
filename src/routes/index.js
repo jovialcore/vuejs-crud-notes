@@ -1,6 +1,4 @@
-import {
-    createRouter, createWebHistory
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import LandingPage from "../components/LandingPage.vue";
 
@@ -10,17 +8,17 @@ import ShowNote from "../components/ShowNote.vue";
 
 
 const routes = [
-    { path: '/', Component: LandingPage, name: "landing" },
-    { path: '/create', Component: CreateNote, name: "create" },
-    { path: '/show', Component: ShowNote, name: "show" }
+    { path: "/", component: LandingPage, name: "landing" },
+    { path: "/create", component: CreateNote, name: "create" },
+    { path: "/show", component: ShowNote, name: "show" }
 
 ];
 
 const router = createRouter({
 
     history: createWebHistory(),
-    routes
+	routes,
 
-})
+});
 
-export default router
+export default router;

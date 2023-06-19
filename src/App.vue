@@ -1,17 +1,13 @@
 <template>
-  <LandingPage msg="Welcome to notes landing page  " />
-
   <RouterView />
 </template>
 
 <script>
-import LandingPage from './components/LandingPage.vue'
+
 
 export default {
   name: 'App',
-  components: {
-    LandingPage
-  }
+
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-5">
     <h1 class="text-center mb-5">{{ msg }}</h1>
-    
+
     <router-link class="btn btn-primary" role="button" :to="{ name: 'create' }"> Create a new note </router-link>
 
     <div class="card mt-3">
@@ -11,7 +11,6 @@
 
       </div>
     </div>
-
 
   </div>
 </template>
