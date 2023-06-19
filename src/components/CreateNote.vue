@@ -3,16 +3,16 @@
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Note Title</label>
     <input v-model="title" type="text" class="form-control" id="exampleFormControlInput1"
-      placeholder="e.g Purple Hibiscus">
+      placeholder="e.g Purple Hibiscus" required>
   </div>
   <div class="mb-3">
     Words: {{ wordCount }}
     <label for="exampleFormControlTextarea1" class="form-label">Text Description</label>
-    <textarea v-model="text" @keypress.enter="wordCounter" class="form-control" id="exampleFormControlTextarea1"
-      rows="3"></textarea>
+    <textarea v-model="text" @keypress.enter="wordCounter" class="form-control" id="exampleFormControlTextarea1" rows="3"
+      required></textarea>
   </div>
 
-  <button class="btn btn-primary" @click="save" role="button"> Create </button>
+  <button class="btn btn-primary" :disabled="isDisabled" @click="save" role="button"> Create </button>
 </template>
 
 
@@ -24,9 +24,6 @@ export default {
   setup() {
     const text = ref('');
     const title = ref('');
-    const id = ref(0);
-
-    const arr = ref(0);
 
     const wordCount = ref(0);
 
@@ -45,10 +42,12 @@ export default {
 
       const data = {
         id: uuid(),
+        title: title.value,
         text: text.value
       }
       const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
       dataTosave.push(data)
+
       localStorage.setItem('notes', JSON.stringify(dataTosave));
     }
 
@@ -56,12 +55,14 @@ export default {
       return Math.random().toString(36).substring(2, 9)
     }
 
+    // disbale create button untill somehtinf works 
+    const isDisabled = computed(() => title.value === '' || text.value === '')
+
     const save = function () {
 
       prepareData()
-
-      localStorage.setItem('noteTitle', title.value)
-      localStorage.setItem('noteText', text.value)
+      title.value = "";
+      text.value = "";
     }
     return {
       text,
@@ -69,12 +70,9 @@ export default {
       wordCounter,
       save,
       title,
-      id,
-      arr,
       prepareData,
       uuid,
-
-
+      isDisabled
     }
   }
 }
