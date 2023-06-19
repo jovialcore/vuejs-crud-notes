@@ -10,9 +10,9 @@ import ShowNote from "../components/ShowNote.vue";
 
 
 const routes = [
-    { path: '/', Component: LandingPage },
-    { path: '/create', Component: CreateNote },
-    { path: '/show', Component: ShowNote }
+    { path: '/', Component: LandingPage, name: "landing" },
+    { path: '/create', Component: CreateNote, name: "create" },
+    { path: '/show', Component: ShowNote, name: "show" }
 
 ];
 

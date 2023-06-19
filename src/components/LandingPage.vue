@@ -1,9 +1,9 @@
 <template>
-
   <div class="container mt-5">
     <h1 class="text-center mb-5">{{ msg }}</h1>
+    
+    <router-link class="btn btn-primary" role="button" :to="{ name: 'create' }"> Create a new note </router-link>
 
-    <a class="btn btn-primary" href="#" role="button">Create a new note</a>
     <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title">Note title</h5>

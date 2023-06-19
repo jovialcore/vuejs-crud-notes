@@ -1,5 +1,7 @@
 <template>
   <LandingPage msg="Welcome to notes landing page  " />
+
+  <RouterView />
 </template>
 
 <script>
