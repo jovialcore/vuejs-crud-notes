@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
-    <h1 class="text-center">{{ msg }}</h1>
 
-    <div class="card mt-5">
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">{{ msg }}</h1>
+
+    <a class="btn btn-primary" href="#" role="button">Create a new note</a>
+    <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title">Note title</h5>
         <p class="card-text">Notes brief description... </p>

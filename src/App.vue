@@ -1,6 +1,5 @@
 <template>
   <LandingPage msg="Welcome to notes landing page  " />
- 
 </template>
 
 <script>
