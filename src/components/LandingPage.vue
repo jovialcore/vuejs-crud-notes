@@ -23,7 +23,7 @@ export default {
     onMounted(() => {
 
       if (localStorage.userData) {
-
+        
         title.value = localStorage.noteTitle
         text.value = localStorage.noteText
 

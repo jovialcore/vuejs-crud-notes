@@ -17,13 +17,16 @@
 
 
 <script>
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 export default {
   name: 'CreateNote',
 
   setup() {
     const text = ref('');
     const title = ref('');
+    const id = ref(0);
+
+    const arr = ref(0);
 
     const wordCount = ref(0);
 
@@ -38,7 +41,25 @@ export default {
       wordCount.value = words.length
     }
 
+    const prepareData = () => {
+
+      const data = {
+        id: uuid(),
+        text: text.value
+      }
+      const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
+      dataTosave.push(data)
+      localStorage.setItem('notes', JSON.stringify(dataTosave));
+    }
+
+    const uuid = () => {
+      return Math.random().toString(36).substring(2, 9)
+    }
+
     const save = function () {
+
+      prepareData()
+
       localStorage.setItem('noteTitle', title.value)
       localStorage.setItem('noteText', text.value)
     }
@@ -47,7 +68,13 @@ export default {
       wordCount,
       wordCounter,
       save,
-      title
+      title,
+      id,
+      arr,
+      prepareData,
+      uuid,
+
+
     }
   }
 }
