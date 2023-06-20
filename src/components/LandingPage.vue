@@ -11,11 +11,11 @@
       <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: { id: note.id } }"> <i
           class="fa fa-edit"></i> edit note
       </router-link>
-      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }"> <i
+      <router-link class="ms-sm-3 ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }"> <i
           class="fa fa-eye"></i> show note
       </router-link>
 
-      <button type="button" @click="del(note.id)" class=" ms-3 btn btn-danger"> <i class="fa fa-trash-o"></i>
+      <button type="button" @click="del(note.id)" class=" ms-0 ms-sm-3 mt-3 mt-sm-0 btn btn-danger"> <i class="fa fa-trash-o"></i>
         delete</button>
     </div>
   </div>
