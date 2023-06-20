@@ -29,11 +29,9 @@ import { useRoute } from 'vue-router'
 export default {
     name: 'EditNote',
 
-
-
     setup() {
-        const title = ref('')
-        const text = ref('')
+        const title = ref("")
+        const text = ref("")
         const note = ref([])
         const wordCount = ref(0)
         const id = useRoute().params.id

@@ -34,7 +34,8 @@ export default {
 
         })
 
-        return { title, text, note }
+    
+        return { title, text, note}
     }
 
 }

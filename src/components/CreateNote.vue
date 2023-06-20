@@ -41,6 +41,11 @@ export default {
       wordCount.value = words.length
     }
 
+
+    const uuid = () => {
+      return Math.random().toString(36).substring(2, 9)
+    }
+
     const prepareData = () => {
 
       const data = {
@@ -56,9 +61,7 @@ export default {
 
     }
 
-    const uuid = () => {
-      return Math.random().toString(36).substring(2, 9)
-    }
+
 
     // disbale create button untill all forms are filled works 
     const isDisabled = computed(() => title.value === '' || text.value === '')

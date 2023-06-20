@@ -8,18 +8,22 @@
       <h5 class="card-title">Note title : {{ note.title }} </h5>
       <p class="card-text"> Description: {{ note.text }}</p>
 
-      <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: { id: note.id } }"> <i class="fa fa-edit"></i>  edit note
+      <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: { id: note.id } }"> <i
+          class="fa fa-edit"></i> edit note
       </router-link>
-      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }">  <i class="fa fa-eye"></i>  show note
+      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }"> <i
+          class="fa fa-eye"></i> show note
       </router-link>
 
-      <button type="button" class=" ms-3 btn btn-danger"> <i class="fa fa-trash-o"></i>   delete</button>
+      <button type="button" @click="del(note.id)" class=" ms-3 btn btn-danger"> <i class="fa fa-trash-o"></i>
+        delete</button>
     </div>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
+
 export default {
   name: 'LandingPage',
 
@@ -38,9 +42,23 @@ export default {
 
     })
 
+    const del = function (id) {
+
+      const toDelete = confirm('Do you want to delete a note ?')
+
+      if (toDelete) {
+
+        const notes = JSON.parse(localStorage.getItem('notes'))
+        const newNotes = notes.filter(item => item.id !== id);
+        localStorage.setItem('notes', JSON.stringify(newNotes))
+      }
+    }
+
+
     return {
       title,
-      notes
+      notes,
+      del
     }
   }
 
