@@ -3,10 +3,10 @@
 
   <router-link class="btn btn-primary" role="button" :to="{ name: 'create' }"> Create a new note </router-link>
 
-  <div class="card mt-3">
+  <div class="card mt-3" v-for="(note) in notes" :key="note.id">
     <div class="card-body">
-      <h5 class="card-title">Note title : {{ title }} </h5>
-      <p class="card-text"> Description: {{ text }}</p>
+      <h5 class="card-title">Note title : {{ note.title }} </h5>
+      <p class="card-text"> Description: {{ note.text }}</p>
 
     </div>
   </div>
@@ -28,7 +28,7 @@ export default {
         notes.value = JSON.parse(localStorage.getItem('notes'))
 
       }
-     
+
     })
 
     return {
