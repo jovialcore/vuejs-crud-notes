@@ -5,7 +5,7 @@
 
   <div class="card mt-3">
     <div class="card-body">
-      <h5 class="card-title">Note title :  {{ title }} </h5>
+      <h5 class="card-title">Note title : {{ title }} </h5>
       <p class="card-text"> Description: {{ text }}</p>
 
     </div>
@@ -19,21 +19,21 @@ export default {
 
   setup() {
     const title = ref('')
-    const text = ref('jjfjfj')
+    const notes = ref([])
+
     onMounted(() => {
 
-      if (localStorage.userData) {
-        
-        title.value = localStorage.noteTitle
-        text.value = localStorage.noteText
+      if (localStorage.notes) {
+
+        notes.value = JSON.parse(localStorage.getItem('notes'))
 
       }
-      console.log(`the component is now mounted.`)
+     
     })
 
     return {
       title,
-      text
+      notes
     }
   }
 
