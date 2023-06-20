@@ -39,33 +39,32 @@ export default {
     const isNote = ref(null)
 
     onMounted(() => {
-
-
-      
-      if (localStorage.notes && JSON.parse(localStorage.getItem('notes')).length  != 0 ) {
+      if (localStorage.notes && JSON.parse(localStorage.getItem('notes')).length ) {
 
         notes.value = JSON.parse(localStorage.getItem('notes'))
         isNote.value = false;
       } else {
         noNotes.value = 'No Notes'
-
         isNote.value = true;
 
       }
 
     })
-
     const del = function (id) {
+ 
+      if (confirm('are you readeay ')) {
+        const localStorageNotes = JSON.parse(localStorage.getItem('notes'))
 
-      const toDelete = confirm('Do you want to delete a note ?')
+        const newNotes = localStorageNotes.filter(item => item.id !== id);
 
-      if (toDelete) {
+        notes.value = newNotes
 
-        const notes = JSON.parse(localStorage.getItem('notes'))
-        const newNotes = notes.filter(item => item.id !== id);
         localStorage.setItem('notes', JSON.stringify(newNotes))
+
       }
+
     }
+
 
 
     return {
