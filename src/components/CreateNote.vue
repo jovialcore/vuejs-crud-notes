@@ -56,7 +56,7 @@ export default {
       }
 
       const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
-      dataTosave.push(data)
+      dataTosave.unshift(data)
       localStorage.setItem('notes', JSON.stringify(dataTosave));
 
 
