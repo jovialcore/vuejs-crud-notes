@@ -45,11 +45,11 @@ export default {
         title: title.value,
         text: text.value
       }
-      if (localStorage.notes) {
-        const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
-        dataTosave.push(data)
-        localStorage.setItem('notes', JSON.stringify(dataTosave));
-      }
+
+      const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
+      dataTosave.push(data)
+      localStorage.setItem('notes', JSON.stringify(dataTosave));
+
 
     }
 

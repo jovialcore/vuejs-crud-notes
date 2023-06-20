@@ -5,7 +5,7 @@
             placeholder="e.g Purple Hibiscus" required>
     </div>
     <div class="mb-3">
-       
+
         <label for="exampleFormControlTextarea1" class="form-label"> Words: {{ wordCount }} </label>
         <textarea v-model="text" @keypress.enter="wordCounter" class="form-control" id="exampleFormControlTextarea1"
             rows="3" required></textarea>
@@ -31,9 +31,8 @@ export default {
         const title = ref('')
         const text = ref('')
         const note = ref([])
-        const wordCount= ref(0)
+        const wordCount = ref(0)
         const id = useRoute().params.id
-
 
         watch(text, (newText) => {
 
@@ -43,8 +42,6 @@ export default {
         const wordCounter = (text) => {
             const words = text.trim().split(/\s+/);
             wordCount.value = words.length
-
-            console.log(words)
         }
 
         onMounted(() => {
@@ -55,10 +52,42 @@ export default {
 
         })
 
+   
+
         const isDisabled = computed(() => title.value === '' || text.value === '')
+        const prepareData = () => {
+
+            if (localStorage.notes) {
+
+                note.value = 
+                    {
+                        id: id,
+                        title: title.value,
+                        text: text.value
+                    }
+                
+
+                const dataTosave = JSON.parse(localStorage.getItem('notes'));
+
+                const newData = dataTosave.findIndex(item => item.id == id);
+                if (newData !== -1) {
+                    dataTosave[newData] = note.value
+                    localStorage.setItem('notes', JSON.stringify(dataTosave))
+                }
+
+                localStorage.setItem('notes', JSON.stringify(dataTosave));
+            }
+
+        }
+
+        const save = function () {
+
+            prepareData()
+            
+        }
 
         return {
-            note, title, text, isDisabled, wordCount
+            note, title, text, isDisabled, wordCount, save
         }
 
     }
