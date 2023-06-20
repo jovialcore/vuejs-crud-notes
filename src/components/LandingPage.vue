@@ -52,7 +52,7 @@ export default {
     })
     const del = function (id) {
 
-      if (confirm('are you readeay ')) {
+      if (confirm('are you sure you want to do this ? ')) {
         const localStorageNotes = JSON.parse(localStorage.getItem('notes'))
 
         const newNotes = localStorageNotes.filter(item => item.id !== id);
