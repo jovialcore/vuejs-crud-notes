@@ -3,10 +3,12 @@
 
   <router-link class="btn btn-primary" role="button" :to="{ name: 'create' }"> Create a new note </router-link>
 
-  <div class="card mt-3" v-for="(note) in notes" :key="note.id">
+  <div class="card my-3" v-for="(note) in notes" :key="note.id">
     <div class="card-body">
       <h5 class="card-title">Note title : {{ note.title }} </h5>
       <p class="card-text"> Description: {{ note.text }}</p>
+
+      <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: {id: note.id} }"> edit note </router-link>
 
     </div>
   </div>
@@ -24,6 +26,8 @@ export default {
     onMounted(() => {
 
       if (localStorage.notes) {
+
+        console.log('yhooo')
 
         notes.value = JSON.parse(localStorage.getItem('notes'))
 

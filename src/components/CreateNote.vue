@@ -45,17 +45,19 @@ export default {
         title: title.value,
         text: text.value
       }
-      const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
-      dataTosave.push(data)
+      if (localStorage.notes) {
+        const dataTosave = JSON.parse(localStorage.getItem('notes')) || [];
+        dataTosave.push(data)
+        localStorage.setItem('notes', JSON.stringify(dataTosave));
+      }
 
-      localStorage.setItem('notes', JSON.stringify(dataTosave));
     }
 
     const uuid = () => {
       return Math.random().toString(36).substring(2, 9)
     }
 
-    // disbale create button untill somehtinf works 
+    // disbale create button untill all forms are filled works 
     const isDisabled = computed(() => title.value === '' || text.value === '')
 
     const save = function () {
