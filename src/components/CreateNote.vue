@@ -1,6 +1,9 @@
 
 <template>
-  <div class="mb-3">
+  <router-link class="btn btn-secondary" role="button" :to="{ name: 'landing' }"><i class="fa fa-arrow-left"></i> back
+  </router-link>
+
+  <div class="my-3">
     <label for="exampleFormControlInput1" class="form-label">Note Title</label>
     <input v-model="title" type="text" class="form-control" id="exampleFormControlInput1"
       placeholder="e.g Purple Hibiscus" required>
