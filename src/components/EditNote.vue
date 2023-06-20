@@ -52,20 +52,17 @@ export default {
 
         })
 
-   
-
         const isDisabled = computed(() => title.value === '' || text.value === '')
         const prepareData = () => {
 
             if (localStorage.notes) {
 
-                note.value = 
-                    {
-                        id: id,
-                        title: title.value,
-                        text: text.value
-                    }
-                
+                note.value =
+                {
+                    id: id,
+                    title: title.value,
+                    text: text.value
+                }
 
                 const dataTosave = JSON.parse(localStorage.getItem('notes'));
 
@@ -83,7 +80,7 @@ export default {
         const save = function () {
 
             prepareData()
-            
+
         }
 
         return {

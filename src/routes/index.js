@@ -12,7 +12,7 @@ import EditNote from "../components/EditNote.vue";
 const routes = [
     { path: "/", component: LandingPage, name: "landing" },
     { path: "/create", component: CreateNote, name: "create" },
-    { path: "/show", component: ShowNote, name: "show" },
+    { path: "/show/:id", component: ShowNote, name: "show" },
     { path: "/edit/:id", component: EditNote, name: "edit" }
 
 ];

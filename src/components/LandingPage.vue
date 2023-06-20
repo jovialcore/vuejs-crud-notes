@@ -9,7 +9,7 @@
       <p class="card-text"> Description: {{ note.text }}</p>
 
       <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: {id: note.id} }"> edit note </router-link>
-
+      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: {id: note.id} }"> show note </router-link>
     </div>
   </div>
 </template>
