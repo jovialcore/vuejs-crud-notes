@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center mb-5">Welcome to the landing page</h1>
+  <h1 class="text-center mb-5">Welcome to Notes Landing Page</h1>
 
   <router-link class="btn btn-primary" role="button" :to="{ name: 'create' }"> Create a new note </router-link>
 
@@ -19,6 +19,11 @@
         delete</button>
     </div>
   </div>
+
+
+  <div class="mt-4" v-if="isNote">
+    <p> No Notes... Please add </p>
+  </div>
 </template>
 
 <script>
@@ -30,13 +35,21 @@ export default {
   setup() {
     const title = ref('')
     const notes = ref([])
+    const noNotes = ref("")
+    const isNote = ref(null)
 
     onMounted(() => {
 
-      if (localStorage.notes) {
 
+      
+      if (localStorage.notes && JSON.parse(localStorage.getItem('notes')).length  != 0 ) {
 
         notes.value = JSON.parse(localStorage.getItem('notes'))
+        isNote.value = false;
+      } else {
+        noNotes.value = 'No Notes'
+
+        isNote.value = true;
 
       }
 
@@ -58,7 +71,8 @@ export default {
     return {
       title,
       notes,
-      del
+      del,
+      isNote
     }
   }
 
