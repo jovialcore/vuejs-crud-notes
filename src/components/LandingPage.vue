@@ -8,10 +8,12 @@
       <h5 class="card-title">Note title : {{ note.title }} </h5>
       <p class="card-text"> Description: {{ note.text }}</p>
 
-      <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: { id: note.id } }"> edit note
+      <router-link class="btn btn-secondary" role="button" :to="{ name: 'edit', params: { id: note.id } }"> <i class="fa fa-edit"></i>  edit note
       </router-link>
-      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }"> show note
+      <router-link class="ms-3 btn btn-success" role="button" :to="{ name: 'show', params: { id: note.id } }">  <i class="fa fa-eye"></i>  show note
       </router-link>
+
+      <button type="button" class=" ms-3 btn btn-danger"> <i class="fa fa-trash-o"></i>   delete</button>
     </div>
   </div>
 </template>
