@@ -39,7 +39,7 @@ export default {
     const isNote = ref(null)
 
     onMounted(() => {
-      if (localStorage.notes && JSON.parse(localStorage.getItem('notes')).length ) {
+      if (localStorage.notes && JSON.parse(localStorage.getItem('notes')).length) {
 
         notes.value = JSON.parse(localStorage.getItem('notes'))
         isNote.value = false;
@@ -51,7 +51,7 @@ export default {
 
     })
     const del = function (id) {
- 
+
       if (confirm('are you readeay ')) {
         const localStorageNotes = JSON.parse(localStorage.getItem('notes'))
 

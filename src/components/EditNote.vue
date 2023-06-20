@@ -1,7 +1,6 @@
 <template>
-
-<router-link class="btn btn-secondary" role="button" :to="{ name: 'landing' }"><i class="fa fa-arrow-left"></i> back
-  </router-link>
+    <router-link class="btn btn-secondary" role="button" :to="{ name: 'landing' }"><i class="fa fa-arrow-left"></i> back
+    </router-link>
 
     <div class="my-3">
         <label for="exampleFormControlInput1" class="form-label">Note Title</label>
@@ -23,6 +22,9 @@
 <script >
 
 import { onMounted, ref, computed, watch } from 'vue'
+
+
+import router from '@/routes';
 
 import { useRoute } from 'vue-router'
 
@@ -82,6 +84,8 @@ export default {
         const save = function () {
 
             prepareData()
+
+            router.push('/')
 
         }
 

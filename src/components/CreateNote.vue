@@ -20,6 +20,7 @@
 
 
 <script>
+import router from '@/routes';
 import { computed, ref, watch } from 'vue'
 export default {
   name: 'CreateNote',
@@ -62,7 +63,6 @@ export default {
     }
 
 
-
     // disbale create button untill all forms are filled works 
     const isDisabled = computed(() => title.value === '' || text.value === '')
 
@@ -71,6 +71,8 @@ export default {
       prepareData()
       title.value = "";
       text.value = "";
+
+      router.push('/')
     }
     return {
       text,
