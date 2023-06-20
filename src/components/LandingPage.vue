@@ -27,8 +27,7 @@ export default {
 
       if (localStorage.notes) {
 
-        console.log('yhooo')
-
+    
         notes.value = JSON.parse(localStorage.getItem('notes'))
 
       }

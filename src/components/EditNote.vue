@@ -20,17 +20,30 @@
 
 import { onMounted, ref } from 'vue'
 
+import { useRoute } from 'vue-router'
+
 export default {
     name: 'EditNote',
 
-    setup() {
-        const note = ref([])
-        const getNote = onMounted(() => {
 
+
+    setup() {
+        const title = ref('');
+        const text = ref('')
+        const note = ref([])
+        const id = useRoute().params.id
+
+        onMounted(() => {
+            note.value = JSON.parse(localStorage.getItem('notes')).find(item => item.id == id)
+            title.value = note.value.title
+            text.value = note.value.text
+            console.log(note.value)
         })
 
+
+
         return {
-            note, getNote
+            note, title, text
         }
 
     }
