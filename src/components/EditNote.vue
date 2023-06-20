@@ -38,16 +38,20 @@ export default {
         const wordCount = ref(0)
         const id = useRoute().params.id
 
+
+        // watch the user type and call the wordCounter method
         watch(text, (newText) => {
 
             wordCounter(newText)
         })
-
+        // count words
         const wordCounter = (text) => {
+            // preg match spacing
             const words = text.trim().split(/\s+/);
             wordCount.value = words.length
         }
 
+        // load the items from locaalll stooorage as soon as page loads (mounted)
         onMounted(() => {
             note.value = JSON.parse(localStorage.getItem('notes')).find(item => item.id == id)
 
@@ -56,10 +60,14 @@ export default {
 
         })
 
+        // disable the button except all forms are filled
         const isDisabled = computed(() => title.value === '' || text.value === '')
+
+        // prepare data before saving 
         const prepareData = () => {
 
             if (localStorage.notes) {
+
 
                 note.value =
                 {
@@ -70,12 +78,14 @@ export default {
 
                 const dataTosave = JSON.parse(localStorage.getItem('notes'));
 
+                // get  the index (number) of the item that matches the id 
                 const newData = dataTosave.findIndex(item => item.id == id);
+
                 if (newData !== -1) {
                     dataTosave[newData] = note.value
                     localStorage.setItem('notes', JSON.stringify(dataTosave))
                 }
-
+                // update our lcalstoragge
                 localStorage.setItem('notes', JSON.stringify(dataTosave));
             }
 
@@ -84,7 +94,7 @@ export default {
         const save = function () {
 
             prepareData()
-
+            //redirect to route 
             router.push('/')
 
         }
