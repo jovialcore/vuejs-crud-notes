@@ -5,20 +5,20 @@
             placeholder="e.g Purple Hibiscus" required>
     </div>
     <div class="mb-3">
-        Words: {{ wordCount }}
-        <label for="exampleFormControlTextarea1" class="form-label">Text Description</label>
+       
+        <label for="exampleFormControlTextarea1" class="form-label"> Words: {{ wordCount }} </label>
         <textarea v-model="text" @keypress.enter="wordCounter" class="form-control" id="exampleFormControlTextarea1"
             rows="3" required></textarea>
     </div>
 
-    <button class="btn btn-primary" :disabled="isDisabled" @click="save" role="button"> Create </button>
+    <button class="btn btn-primary" :disabled="isDisabled" @click="save" role="button"> Update </button>
 </template>
 
 
 
 <script >
 
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed, watch } from 'vue'
 
 import { useRoute } from 'vue-router'
 
@@ -28,22 +28,37 @@ export default {
 
 
     setup() {
-        const title = ref('');
+        const title = ref('')
         const text = ref('')
         const note = ref([])
+        const wordCount= ref(0)
         const id = useRoute().params.id
+
+
+        watch(text, (newText) => {
+
+            wordCounter(newText)
+        })
+
+        const wordCounter = (text) => {
+            const words = text.trim().split(/\s+/);
+            wordCount.value = words.length
+
+            console.log(words)
+        }
 
         onMounted(() => {
             note.value = JSON.parse(localStorage.getItem('notes')).find(item => item.id == id)
+
             title.value = note.value.title
             text.value = note.value.text
-            console.log(note.value)
+
         })
 
-
+        const isDisabled = computed(() => title.value === '' || text.value === '')
 
         return {
-            note, title, text
+            note, title, text, isDisabled, wordCount
         }
 
     }
